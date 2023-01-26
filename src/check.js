@@ -9,10 +9,23 @@ const config7 = [['(', ')'], ['[', ']'], ['{', '}'], ['|', '|']];
 const check = require('./index')
 
 console.log('check1 true',check('|()|',config5))
-console.log('check17 false',check('[]][[]',config2))
-console.log('check13 false',check('5555512575557777777555566667888888667661133833448441111222233333444442266666', config6))
+console.log('check2 true',check('((()))()', config1))
+console.log('check10 false',check('|(|)', config5))
+// console.log('check13 false',check('5555512575557777777555566667888888667661133833448441111222233333444442266666', config6))
+// console.log('check17 false',check('[]][[]',config2))
+// console.log('check19 false',check('([[[[(({{{}}}(([](((((((())))||||||))))[[{{|{{}}|}}[[[[]]]]{{{{{}}}}}]]))))]]]])(())', config7))
+
+// it('should check if brackets sequence is correct 2', () => {
+//   assert.equal(check('((()))()', config1), true);
+// });
+
 // it('should check if brackets sequence is correct 9', () => {
 //   assert.equal(check('|()|', config5), true);
+// });
+
+
+// it('should check if brackets sequence is not correct 10', () => {
+//   assert.equal(check('|(|)', config5), false);
 // });
 
 // it('should check if brackets sequence is not correct 17', () => {
@@ -33,4 +46,8 @@ console.log('check13 false',check('555551257555777777755556666788888866766113383
 
 // it('should check if brackets sequence is not correct 18', () => {
 //   assert.equal(check('([[[[(({{{}}}(([](((((((())))||||||))))[[{{|{{}}|}}[[[[]]]]{{{{{}}}}}]]))))]]]]))()', config7), false);
+// });
+
+// it('should check if brackets sequence is correct 19', () => {
+//   assert.equal(check('([[[[(({{{}}}(([](((((((())))||||||))))[[{{|{{}}|}}[[[[]]]]{{{{{}}}}}]]))))]]]])(())', config7), true);
 // });

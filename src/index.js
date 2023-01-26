@@ -19,6 +19,8 @@ module.exports = function check(str, bracketsConfig) {
   // console.log('openBracket, closeBracket',openBracket, closeBracket)
   let closeBrackets = Object.keys(bracketsMap)
   let openBrackets = Object.values(bracketsMap)
+  let equal = closeBrackets.filter(bracket => openBrackets.includes(bracket))
+  console.log('equal',equal)
   console.log('openBrackets,closeBrackets',openBrackets,closeBrackets)
   let brackets = str.split('')
   console.log('stack',stack)
@@ -26,28 +28,39 @@ module.exports = function check(str, bracketsConfig) {
   console.log('bracketsConfig',bracketsConfig)
   
 
-  brackets.forEach(bracket => {
-    console.log('bracket',bracket)
-    console.log('iteration stack',stack)
-    if(openBrackets.includes(bracket) && (!stack.includes(bracket))){
-      console.log('openBrackets.includes(bracket) && (!stack.includes(bracket))',bracket, openBrackets.includes(bracket) && (!stack.includes(bracket)))
-      stack.push(bracket)
-    }else {
-      console.log('else',bracket)
-      if(stack.length === 0){
-        console.log('stack.length === 0',stack.length === 0)
-        return false
-      }
+  // brackets.forEach(bracket => {
+    for(let i = 0; i < str.length; i++){
+      let current = str[i]
+      console.log('bracket',current)
+      console.log('iteration stack',stack)
+      if(openBrackets.includes(current)){
+        
+        if(stack.includes(current) && equal.includes(current)){
+          console.log('stack.includes(current) && equal.includes(current)',current, stack.includes(current) && equal.includes(current))
+            stack.pop()
+        }else {
+          stack.push(current)
+        }
 
-      let last = stack[stack.length - 1]
-
-      if(bracketsMap[bracket] === last ){
-        stack.pop()
+        // stack.push(current)
       }else {
-        return false
+        console.log('else',current)
+        if(stack.length === 0){
+          console.log('stack.length === 0',stack.length === 0)
+          return false
+        }
+  
+        let last = stack[stack.length - 1]
+  
+        if(bracketsMap[current] === last ){
+          stack.pop()
+        }else {
+          return false
+        }
       }
     }
-  })
+   
+  // })
 
   // brackets.forEach(bracket => {
   //   // bracketsConfig.forEach(config => {
